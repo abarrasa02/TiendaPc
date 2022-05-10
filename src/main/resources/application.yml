@@ -1,0 +1,21 @@
+spring:
+  jackson:
+    parser:
+      allow-backslash-escaping-any-character: true
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:orcls
+    username: abarrasa
+    password: hiberus1000
+    driverClassName: oracle.jdbc.driver.OracleDriver
+
+  mail:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+            required: 'true'
+          auth: 'true'
+    host: smtp.gmail.com
+    username: daw09.2022@gmail.com
+    password: aanpxjgjbzoulmbu
