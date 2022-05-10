@@ -21,4 +21,17 @@ public class Usuarios implements Serializable {
     @Id
     @NotNull
     private int Id;
+    @Getter
+    @Setter
+    private String Nombre;
+    @Getter
+    @Setter
+    private String Apellido;
+    @Getter
+    @Setter
+    private String Apellido2;
+    @Getter
+    @Setter
+    private String  Email;
+
 }
