@@ -19,7 +19,11 @@ public class Compra {
     private int cantidad;
 
     @ManyToOne
+    @JoinColumn(name = "pedidoId")
     private Pedido pedidoId;
-    private Producto productoId;
+
+    @ManyToOne
+    @JoinColumn(name = "pedidoId")
+    private Productos productoId;
 
 }
