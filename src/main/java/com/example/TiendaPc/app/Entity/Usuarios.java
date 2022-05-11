@@ -17,7 +17,7 @@ public class Usuarios implements Serializable {
 
     @Id
     @NotNull
-    private Long Id;
+    private Long id;
 
     private String nombre;
 
