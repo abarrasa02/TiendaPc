@@ -1,4 +1,4 @@
-package com.example.TiendaPc.app.Controllers;
+package com.example.TiendaPc.app.Controller;
 
 import com.example.TiendaPc.app.Entity.Compra;
 import com.example.TiendaPc.app.Provider.CompraServices;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/compra")
 public class CompraController {
 
     private final CompraServices compraServices;

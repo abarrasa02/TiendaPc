@@ -8,7 +8,7 @@ import java.util.List;
 public class PedidoServices {
     PedidoRepository pedidoRepository;
 
-    public Pedido addProducto(Pedido pedido) {
+    public Pedido addPedido(Pedido pedido) {
         return pedidoRepository.save(pedido);
     }
 
@@ -16,14 +16,11 @@ public class PedidoServices {
         List<Pedido> pedido = pedidoRepository.findAll();
         return pedido;
     }
-    public Pedido findProductoById(Long id){
-        return pedidoRepository.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
-    }
-    public void deleteProducto(Long id){
+    public void deletePedido(Long id){
         pedidoRepository.deletePedidosById(id);
     }
-    public Pedido updateProducto(Pedido pedido){
-        if (pedidoRepository.findProductoById(pedido.getId()).isPresent() == true){
+    public Pedido updatePedido(Pedido pedido){
+        if (pedidoRepository.findPedidoById(pedido.getId()).isPresent()){
             return pedidoRepository.save(pedido);
         }else{
             throw new IllegalArgumentException("El libro no existe");

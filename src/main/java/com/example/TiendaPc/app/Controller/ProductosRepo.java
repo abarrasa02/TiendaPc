@@ -1,5 +1,6 @@
 package com.example.TiendaPc.app.Controller;
 
+import com.example.TiendaPc.app.Entity.Categorias;
 import com.example.TiendaPc.app.Entity.Productos;
 import com.example.TiendaPc.app.Provider.ProductosServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,6 @@ public class ProductosRepo {
         List<Productos> productos = productosServices.findAllProductos();
         return new ResponseEntity<List<Productos>>(productos, HttpStatus.OK);
     }
-    @GetMapping("getById/{id}")
-    public ResponseEntity<Productos> getProductosById(@PathVariable("id") Long id){
-        Productos productos = productosServices.findProductoById(id);
-        return new ResponseEntity<>(productos, HttpStatus.OK);
-    }
     @PostMapping("/add")
     public ResponseEntity<Productos> addProductos(@RequestBody Productos productos){
         Productos newProductos = productosServices.addProducto(productos);
@@ -35,6 +31,10 @@ public class ProductosRepo {
         Productos updateProducto = productosServices.updateProducto(productos);
         return new ResponseEntity<>(updateProducto, HttpStatus.OK);
     }
-
+    @DeleteMapping("/delete/{dni}")
+    public ResponseEntity<Categorias> deleteCategorias(@PathVariable("id") Long id){
+        productosServices.deleteProducto(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.TiendaPc.app.Controller;
 
+import com.example.TiendaPc.app.Entity.Categorias;
 import com.example.TiendaPc.app.Entity.Productos;
 import com.example.TiendaPc.app.Entity.Usuarios;
 import com.example.TiendaPc.app.Provider.ProductosServices;
@@ -36,5 +37,10 @@ public class UsuariosRepo {
     public ResponseEntity<Usuarios> updateUsuarios(@RequestBody Usuarios usuarios){
         Usuarios updateUsuarios = usuariosServices.updateUsuario(usuarios);
         return new ResponseEntity<>(updateUsuarios, HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{dni}")
+    public ResponseEntity<Categorias> deleteCategorias(@PathVariable("id") Long id){
+        usuariosServices.deleteUsuario(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

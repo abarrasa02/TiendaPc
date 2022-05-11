@@ -1,4 +1,4 @@
-package com.example.TiendaPc.app.Controllers;
+package com.example.TiendaPc.app.Controller;
 
 import com.example.TiendaPc.app.Entity.Categorias;
 import com.example.TiendaPc.app.Provider.CategoriasService;
@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/categoria")
 public class CategoriasController {
 
     private final CategoriasService categoriasServices;
