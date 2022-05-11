@@ -1,9 +1,7 @@
 package com.example.TiendaPc.app.Controller;
 
 import com.example.TiendaPc.app.Entity.Categorias;
-import com.example.TiendaPc.app.Entity.Productos;
 import com.example.TiendaPc.app.Entity.Usuarios;
-import com.example.TiendaPc.app.Provider.ProductosServices;
 import com.example.TiendaPc.app.Provider.UsuariosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UsuariosRepo {
+public class UsuariosController {
     @Autowired
     private UsuariosServices usuariosServices;
 

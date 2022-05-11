@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/productos")
-public class ProductosRepo {
+public class ProductosController {
     @Autowired
     private ProductosServices productosServices;
 
