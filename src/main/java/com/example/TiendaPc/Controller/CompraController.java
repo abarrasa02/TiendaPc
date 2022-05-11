@@ -1,9 +1,7 @@
-package com.example.TiendaPc.app.Controller;
+package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.app.Entity.Compra;
-import com.example.TiendaPc.app.Provider.CompraServices;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.TiendaPc.Provider.CompraServices;
+import com.example.TiendaPc.Entity.Compra;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +13,11 @@ import java.util.List;
 
 public class CompraController {
 
-    @Autowired
     private CompraServices compraServices;
 
+    public CompraController(CompraServices compraServices) {
+        this.compraServices = compraServices;
+    }
 
 
     @GetMapping("/all")
@@ -38,7 +38,7 @@ public class CompraController {
         return new ResponseEntity<>(updateCompra, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{dni}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Compra> deleteCompra(@PathVariable("id") Long id){
         compraServices.deleteCompra(id);
         return new ResponseEntity<>(HttpStatus.OK);

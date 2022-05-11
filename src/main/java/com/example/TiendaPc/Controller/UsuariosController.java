@@ -1,9 +1,8 @@
-package com.example.TiendaPc.app.Controller;
+package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.app.Entity.Categorias;
-import com.example.TiendaPc.app.Entity.Usuarios;
-import com.example.TiendaPc.app.Provider.UsuariosServices;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.TiendaPc.Entity.Categorias;
+import com.example.TiendaPc.Entity.Usuarios;
+import com.example.TiendaPc.Provider.UsuariosServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +12,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuariosController {
-    @Autowired
+
     private UsuariosServices usuariosServices;
+
+    public UsuariosController(UsuariosServices usuariosServices) {
+        this.usuariosServices = usuariosServices;
+    }
 
 
     @GetMapping("/all")
     public ResponseEntity<List<Usuarios>> getAllUsuarios(){
         List<Usuarios> usuarios = usuariosServices.findAllUsuarios();
-        return new ResponseEntity<List<Usuarios>>(usuarios, HttpStatus.OK);
-    }
-    @GetMapping("getById/{id}")
-    public ResponseEntity<Usuarios> getUsuariosById(@PathVariable("id") Long id){
-        Usuarios usuarios = usuariosServices.findUsuarioById(id);
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
     @PostMapping("/add")
@@ -37,8 +35,8 @@ public class UsuariosController {
         Usuarios updateUsuarios = usuariosServices.updateUsuario(usuarios);
         return new ResponseEntity<>(updateUsuarios, HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{dni}")
-    public ResponseEntity<Categorias> deleteCategorias(@PathVariable("id") Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Usuarios> deleteCategorias(@PathVariable("id") Long id){
         usuariosServices.deleteUsuario(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

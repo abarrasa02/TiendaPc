@@ -1,7 +1,7 @@
-package com.example.TiendaPc.app.Provider;
+package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.app.Entity.Productos;
-import com.example.TiendaPc.app.Repository.ProductosRepository;
+import com.example.TiendaPc.Entity.Productos;
+import com.example.TiendaPc.Repository.ProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.example.TiendaPc.app.Entity;
+package com.example.TiendaPc.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,15 +10,21 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Pedido {
+public class Compra {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private Usuarios usuariosId;
-    private String fecha;
+    private int cantidad;
+
+    @ManyToOne
+    @JoinColumn(name = "pedidoId")
+    private Pedido pedidoId;
+
+    @ManyToOne
+    private Productos productoId;
+
 
 }
