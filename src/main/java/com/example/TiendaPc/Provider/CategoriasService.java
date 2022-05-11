@@ -1,13 +1,22 @@
-package com.example.TiendaPc.app.Provider;
+package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.app.Entity.Categorias;
-import com.example.TiendaPc.app.Repository.CategoriasRepository;
+import com.example.TiendaPc.Repository.CategoriasRepository;
+import com.example.TiendaPc.Entity.Categorias;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoriasService {
 
-    CategoriasRepository categoriasRepository;
+
+    private CategoriasRepository categoriasRepository;
+
+    @Autowired
+    public CategoriasService(CategoriasRepository categoriasRepository) {
+        this.categoriasRepository = categoriasRepository;
+    }
 
     public Categorias addCategorias(Categorias categorias) {
         return categoriasRepository.save(categorias);

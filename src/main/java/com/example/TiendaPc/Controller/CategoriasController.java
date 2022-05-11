@@ -1,9 +1,7 @@
-package com.example.TiendaPc.app.Controller;
+package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.app.Entity.Categorias;
-import com.example.TiendaPc.app.Provider.CategoriasService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.TiendaPc.Provider.CategoriasService;
+import com.example.TiendaPc.Entity.Categorias;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/categoria")
 public class CategoriasController {
 
-    private final CategoriasService categoriasServices;
+    private CategoriasService categoriasServices;
+
+    public CategoriasController(CategoriasService categoriasServices) {
+        this.categoriasServices = categoriasServices;
+    }
 
 
     @GetMapping("/all")
@@ -36,7 +37,7 @@ public class CategoriasController {
         return new ResponseEntity<>(updateCategorias, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{dni}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Categorias> deleteCategorias(@PathVariable("id") Long id){
         categoriasServices.deleteCategorias(id);
         return new ResponseEntity<>(HttpStatus.OK);

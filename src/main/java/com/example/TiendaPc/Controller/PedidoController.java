@@ -1,11 +1,8 @@
-package com.example.TiendaPc.app.Controller;
+package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.app.Entity.Categorias;
-import com.example.TiendaPc.app.Entity.Pedido;
-import com.example.TiendaPc.app.Entity.Productos;
-import com.example.TiendaPc.app.Provider.PedidoServices;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.TiendaPc.Entity.Categorias;
+import com.example.TiendaPc.Entity.Pedido;
+import com.example.TiendaPc.Provider.PedidoServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/productos")
-@AllArgsConstructor
+@RequestMapping("/pedidos")
 public class PedidoController {
 
     private PedidoServices pedidoServices;
 
+    public PedidoController(PedidoServices pedidoServices) {
+        this.pedidoServices = pedidoServices;
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Pedido>> getAllPedidos(){
         List<Pedido> pedidos = pedidoServices.findAllPedido();
-        return new ResponseEntity<List<Pedido>>(pedidos, HttpStatus.OK);
+        return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
     @PostMapping("/add")
     public ResponseEntity<Pedido> addPedido(@RequestBody Pedido pedidos){
@@ -34,8 +34,8 @@ public class PedidoController {
         Pedido updatePedido = pedidoServices.updatePedido(pedido);
         return new ResponseEntity<>(updatePedido, HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{dni}")
-    public ResponseEntity<Categorias> deleteCategorias(@PathVariable("id") Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Pedido> deletePedidos(@PathVariable("id") Long id){
         pedidoServices.deletePedido(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

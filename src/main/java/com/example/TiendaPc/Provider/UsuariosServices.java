@@ -1,7 +1,7 @@
-package com.example.TiendaPc.app.Provider;
+package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.app.Entity.Usuarios;
-import com.example.TiendaPc.app.Repository.UsuariosRepository;
+import com.example.TiendaPc.Entity.Usuarios;
+import com.example.TiendaPc.Repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,12 @@ import java.util.List;
 @Service
 public class UsuariosServices {
 
-    @Autowired
+
     private UsuariosRepository usuariosrepo;
+    @Autowired
+    public UsuariosServices(UsuariosRepository usuariosrepo) {
+        this.usuariosrepo = usuariosrepo;
+    }
 
 
     public Usuarios addUsuarios(Usuarios usuarios){
@@ -32,7 +36,7 @@ public class UsuariosServices {
         usuariosrepo.deleteUsuariosById(id);
     }
     public Usuarios updateUsuario(Usuarios usuarios){
-        if (usuariosrepo.findUsuarioById(usuarios.getId()).isPresent() == true){
+        if (usuariosrepo.findUsuarioById(usuarios.getId()).isPresent()){
             return usuariosrepo.save(usuarios);
         }else{
             throw new IllegalArgumentException("El libro no existe");

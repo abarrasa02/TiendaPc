@@ -1,4 +1,4 @@
-package com.example.TiendaPc.app.Entity;
+package com.example.TiendaPc.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +16,7 @@ public class Compra {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int cantidad;
 
     @ManyToOne
@@ -24,7 +25,6 @@ public class Compra {
 
     @ManyToOne
     private Productos productoId;
-
 
 
 }

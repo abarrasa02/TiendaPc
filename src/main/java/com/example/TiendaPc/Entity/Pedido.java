@@ -1,4 +1,4 @@
-package com.example.TiendaPc.app.Entity;
+package com.example.TiendaPc.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

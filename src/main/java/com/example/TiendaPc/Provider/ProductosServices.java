@@ -1,8 +1,7 @@
-package com.example.TiendaPc.app.Provider;
+package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.app.Entity.Productos;
-import com.example.TiendaPc.app.Entity.Usuarios;
-import com.example.TiendaPc.app.Repository.ProductosRepository;
+import com.example.TiendaPc.Entity.Productos;
+import com.example.TiendaPc.Repository.ProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,12 @@ import java.util.List;
 @Transactional
 @Service
 public class ProductosServices {
-    @Autowired
+
     private ProductosRepository productosrepo;
+    @Autowired
+    public ProductosServices(ProductosRepository productosrepo) {
+        this.productosrepo = productosrepo;
+    }
 
     public Productos addProducto(Productos productos) {
         return productosrepo.save(productos);

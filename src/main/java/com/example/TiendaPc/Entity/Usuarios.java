@@ -1,8 +1,9 @@
-package com.example.TiendaPc.app.Entity;
+package com.example.TiendaPc.Entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -16,8 +17,8 @@ public class Usuarios implements Serializable {
 
 
     @Id
-    @NotNull
-    private Long Id;
+    @Column(name = "id")
+    private Long id;
 
     private String nombre;
 
