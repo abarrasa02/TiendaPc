@@ -2,11 +2,19 @@ package com.example.TiendaPc.app.Provider;
 
 import com.example.TiendaPc.app.Entity.Pedido;
 import com.example.TiendaPc.app.Repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PedidoServices {
-    PedidoRepository pedidoRepository;
+
+    private PedidoRepository pedidoRepository;
+    @Autowired
+    public PedidoServices(PedidoRepository pedidoRepository) {
+        this.pedidoRepository = pedidoRepository;
+    }
 
     public Pedido addPedido(Pedido pedido) {
         return pedidoRepository.save(pedido);

@@ -16,6 +16,7 @@ public class UsuariosController {
     @Autowired
     private UsuariosServices usuariosServices;
 
+
     @GetMapping("/all")
     public ResponseEntity<List<Usuarios>> getAllUsuarios(){
         List<Usuarios> usuarios = usuariosServices.findAllUsuarios();

@@ -21,15 +21,12 @@ public class Compra {
     @ManyToOne
     @JoinColumn(name = "pedidoId")
     private Pedido pedidoId;
-<<<<<<< HEAD
+
     @ManyToOne
     private Productos productoId;
 
-=======
 
-    @ManyToOne
-    @JoinColumn(name = "pedidoId")
-    private Productos productoId;
->>>>>>> 8ba7c4ec312f02dcb1faa2cbf8ad6ea09514ee8c
+
+
 
 }

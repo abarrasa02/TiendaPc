@@ -2,7 +2,7 @@ package com.example.TiendaPc.app.Controller;
 
 import com.example.TiendaPc.app.Entity.Categorias;
 import com.example.TiendaPc.app.Provider.CategoriasService;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/categoria")
 public class CategoriasController {
 
-    private final CategoriasService categoriasServices;
+    @Autowired
+    private CategoriasService categoriasServices;
 
 
     @GetMapping("/all")

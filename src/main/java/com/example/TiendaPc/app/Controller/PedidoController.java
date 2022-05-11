@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/productos")
-@AllArgsConstructor
 public class PedidoController {
 
     private PedidoServices pedidoServices;

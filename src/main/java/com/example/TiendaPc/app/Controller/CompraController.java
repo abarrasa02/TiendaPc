@@ -2,7 +2,8 @@ package com.example.TiendaPc.app.Controller;
 
 import com.example.TiendaPc.app.Entity.Compra;
 import com.example.TiendaPc.app.Provider.CompraServices;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/compra")
+
 public class CompraController {
 
-    private final CompraServices compraServices;
+    @Autowired
+    private CompraServices compraServices;
+
 
 
     @GetMapping("/all")

@@ -2,11 +2,20 @@ package com.example.TiendaPc.app.Provider;
 
 import com.example.TiendaPc.app.Entity.Compra;
 import com.example.TiendaPc.app.Repository.CompraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CompraServices {
-    CompraRepository compraRepository;
+
+
+    private CompraRepository compraRepository;
+    @Autowired
+    public CompraServices(CompraRepository compraRepository) {
+        this.compraRepository = compraRepository;
+    }
 
     public Compra addCompra(Compra compra) {
         return compraRepository.save(compra);
