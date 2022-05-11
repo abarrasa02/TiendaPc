@@ -20,8 +20,8 @@ public class Compra {
 
     @ManyToOne
     private Pedido pedidoId;
-    @ManyToMany
+    @ManyToOne
     private Productos productoId;
-    
+
 
 }
