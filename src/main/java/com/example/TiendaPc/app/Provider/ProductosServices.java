@@ -26,8 +26,8 @@ public class ProductosServices {
     public Productos findProductoById(Long id){
         return productosrepo.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public void deleteProducto(Productos productos){
-        productosrepo.delete(productos);
+    public void deleteProducto(Long id){
+        productosrepo.deleteProductosById(id);
     }
     public Productos updateProducto(Productos productos){
         if (productosrepo.findProductoById(productos.getId()).isPresent() == true){

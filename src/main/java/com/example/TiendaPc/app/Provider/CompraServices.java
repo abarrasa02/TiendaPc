@@ -8,7 +8,7 @@ import java.util.List;
 public class CompraServices {
     CompraRepository compraRepository;
 
-    public Compra addProducto(Compra compra) {
+    public Compra addCompra(Compra compra) {
         return compraRepository.save(compra);
     }
 
@@ -16,14 +16,14 @@ public class CompraServices {
         List<Compra> compra = compraRepository.findAll();
         return compra;
     }
-    public Compra findProductoById(Long id){
-        return compraRepository.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
+    public Compra findCompraById(Long id){
+        return compraRepository.findCompraById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public void deleteProducto(Compra compra){
-        compraRepository.delete(compra);
+    public void deleteCompra(Long id){
+        compraRepository.deleteComprasById(id);
     }
-    public Compra updateProducto(Compra compra){
-        if (compraRepository.findProductoById(compra.getId()).isPresent() == true){
+    public Compra updateCompra(Compra compra){
+        if (compraRepository.findCompraById(compra.getId()).isPresent() == true){
             return compraRepository.save(compra);
         }else{
             throw new IllegalArgumentException("El libro no existe");

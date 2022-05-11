@@ -9,7 +9,7 @@ public class CategoriasService {
 
     CategoriasRepository categoriasRepository;
 
-    public Categorias addProducto(Categorias categorias) {
+    public Categorias addCategorias(Categorias categorias) {
         return categoriasRepository.save(categorias);
     }
 
@@ -17,14 +17,14 @@ public class CategoriasService {
         List<Categorias> categorias = categoriasRepository.findAll();
         return categorias;
     }
-    public Categorias findProductoById(Long id){
-        return categoriasRepository.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
+    public Categorias findCategoriasById(Long id){
+        return categoriasRepository.findCategoriasById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public void deleteProducto(Categorias categorias){
-        categoriasRepository.delete(categorias);
+    public void deleteCategorias(Long id){
+        categoriasRepository.deleteCategoriasById(id);
     }
-    public Categorias updateProducto(Categorias categorias){
-        if (categoriasRepository.findProductoById(categorias.getId()).isPresent() == true){
+    public Categorias updateCategorias(Categorias categorias){
+        if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent() == true){
             return categoriasRepository.save(categorias);
         }else{
             throw new IllegalArgumentException("El libro no existe");

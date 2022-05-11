@@ -19,8 +19,8 @@ public class PedidoServices {
     public Pedido findProductoById(Long id){
         return pedidoRepository.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public void deleteProducto(Pedido pedido){
-        pedidoRepository.delete(pedido);
+    public void deleteProducto(Long id){
+        pedidoRepository.deletePedidosById(id);
     }
     public Pedido updateProducto(Pedido pedido){
         if (pedidoRepository.findProductoById(pedido.getId()).isPresent() == true){

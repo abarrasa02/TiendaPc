@@ -28,8 +28,8 @@ public class UsuariosServices {
         return usuariosrepo.findUsuarioById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
 
-    public void deleteUsuario(Usuarios usuarios){
-        usuariosrepo.delete(usuarios);
+    public void deleteUsuario(Long id){
+        usuariosrepo.deleteUsuariosById(id);
     }
     public Usuarios updateUsuario(Usuarios usuarios){
         if (usuariosrepo.findUsuarioById(usuarios.getId()).isPresent() == true){
