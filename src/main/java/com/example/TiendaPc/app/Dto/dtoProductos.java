@@ -1,6 +1,6 @@
-package com.example.TiendaPc.Entity;
+package com.example.TiendaPc.app.Dto;
 
-
+import com.example.TiendaPc.Entity.Categorias;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,27 +8,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-public class Productos {
-    @Id
-    @NotNull
+public class dtoProductos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
-
     private String descripcion;
-
     private double precio;
-
     private int rebaja;
+    private Long categoriasid;
 
-    @ManyToOne
-    @JoinColumn(name = "categoriasid")
-    private Categorias categoriasid;
 
 }

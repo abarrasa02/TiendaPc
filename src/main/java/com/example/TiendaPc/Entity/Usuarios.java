@@ -15,6 +15,7 @@ public class Usuarios implements Serializable {
 
 
     @Id
+    @NotNull
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +27,12 @@ public class Usuarios implements Serializable {
     private String apellido2;
 
     private String email;
+
+    private String ciudad;
+
+    private String Pais;
+
+    private String lineadireccion1;
 
 
 

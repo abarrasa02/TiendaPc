@@ -10,6 +10,7 @@ import java.util.List;
 
 @Transactional
 @Service
+@Transactional
 public class CategoriasService {
 
 

@@ -10,21 +10,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Compra {
+public class Pedidos {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int cantidad;
-
     @ManyToOne
-    @JoinColumn(name = "pedidoId")
-    private Pedido pedidoId;
+    @JoinColumn(name = "usuariosid")
+    private Usuarios usuariosid;
 
-    @ManyToOne
-    private Productos productoId;
-
+    private String fecha;
 
 }
