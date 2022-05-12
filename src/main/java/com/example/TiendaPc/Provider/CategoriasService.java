@@ -10,7 +10,6 @@ import java.util.List;
 
 @Transactional
 @Service
-@Transactional
 public class CategoriasService {
 
 
@@ -29,6 +28,11 @@ public class CategoriasService {
         List<Categorias> categorias = categoriasRepository.findAll();
         return categorias;
     }
+
+    public Categorias findCategoriaById(Long id){
+        return categoriasRepository.findCategoriasById(id).orElseThrow(() -> new IllegalArgumentException("error"));
+    }
+
     public void deleteCategorias(Long id){
         categoriasRepository.deleteCategoriasById(id);
     }
