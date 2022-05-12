@@ -20,11 +20,13 @@ public class Compra {
     private int cantidad;
 
     @ManyToOne
-    @JoinColumn(name = "pedidoId")
-    private Pedido pedidoId;
+    @JoinColumn(name = "usuariosid")
+    private Usuarios usuariosid;
 
     @ManyToOne
+    @JoinColumn(name = "productoid")
     private Productos productoId;
 
+    private String fecha;
 
 }

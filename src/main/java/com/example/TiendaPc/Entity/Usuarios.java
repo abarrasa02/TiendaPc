@@ -3,9 +3,7 @@ package com.example.TiendaPc.Entity;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -17,11 +15,9 @@ public class Usuarios implements Serializable {
 
 
     @Id
-<<<<<<< HEAD:src/main/java/com/example/TiendaPc/app/Entity/Usuarios.java
     @NotNull
-=======
     @Column(name = "id")
->>>>>>> c04392c73cedddd5689ff9bd2a7ffd1bd5a475b9:src/main/java/com/example/TiendaPc/Entity/Usuarios.java
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
