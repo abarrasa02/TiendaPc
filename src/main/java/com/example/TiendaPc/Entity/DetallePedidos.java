@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "DETALLEPEDIDOS")
 public class DetallePedidos {
 
     @Id
@@ -18,11 +19,13 @@ public class DetallePedidos {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "pedidoid")
     private Pedidos pedidoId;
     @ManyToOne
-    @JoinColumn(name = "productosid")
+    @JoinColumn(name = "productoid")
     private Productos productosId;
     private int cantidad;
+    @Column(name = "preciounidad")
     private double precioUnidad;
 
 }
