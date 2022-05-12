@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CompraRepository extends JpaRepository<Pedidos, Long> {
+public interface PedidosRepository extends JpaRepository<Pedidos, Long> {
     void deleteComprasById(Long id);
     Optional<Pedidos> findCompraById(Long id);
 

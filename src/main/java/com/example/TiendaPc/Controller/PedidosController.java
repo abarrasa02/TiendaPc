@@ -1,6 +1,6 @@
 package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.Provider.CompraServices;
+import com.example.TiendaPc.Provider.PedidosServices;
 import com.example.TiendaPc.Entity.Pedidos;
 import com.example.TiendaPc.Provider.ProductosServices;
 import com.example.TiendaPc.Provider.UsuariosServices;
@@ -19,7 +19,7 @@ import java.util.List;
 public class PedidosController {
 
     @Autowired
-    private CompraServices compraServices;
+    private PedidosServices pedidosServices;
     @Autowired
     private ProductosServices productosServices;
     @Autowired
@@ -29,7 +29,7 @@ public class PedidosController {
 
     @GetMapping("/all")
     public ResponseEntity<List<dtoPedidos>> getAllCompras(){
-        List<Pedidos> compras = compraServices.findAllCompra();
+        List<Pedidos> compras = pedidosServices.findAllCompra();
         List<dtoPedidos> dtoPedidos = new ArrayList<>();
 
         for (int i = 0; i <compras.size(); i++) {
@@ -49,19 +49,19 @@ public class PedidosController {
            compra1.setUsuariosid(usuariosServices.findUsuarioById(compra.getUsuarioId()));
            compra1.setFecha(compra.getFecha());
            compra1.setId(compra.getId());
-        Pedidos newCompra = compraServices.addCompra(compra1);
+        Pedidos newCompra = pedidosServices.addCompra(compra1);
         return new ResponseEntity<>(newCompra, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Pedidos> updateCompra(@RequestBody Pedidos Compra){
-        Pedidos updateCompra = compraServices.updateCompra(Compra);
+        Pedidos updateCompra = pedidosServices.updateCompra(Compra);
         return new ResponseEntity<>(updateCompra, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Pedidos> deleteCompra(@PathVariable("id") Long id){
-        compraServices.deleteCompra(id);
+        pedidosServices.deleteCompra(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
