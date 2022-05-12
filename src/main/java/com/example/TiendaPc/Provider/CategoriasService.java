@@ -35,7 +35,7 @@ public class CategoriasService {
         categoriasRepository.deleteCategoriasById(id);
     }
     public Categorias updateCategorias(Categorias categorias){
-        if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent() == true){
+        if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent()){
             return categoriasRepository.save(categorias);
         }else{
             throw new IllegalArgumentException("El libro no existe");

@@ -2,6 +2,7 @@ package com.example.TiendaPc.Controller;
 
 import com.example.TiendaPc.Entity.Compra;
 import com.example.TiendaPc.Entity.Productos;
+import com.example.TiendaPc.Provider.CategoriasService;
 import com.example.TiendaPc.Provider.ProductosServices;
 import com.example.TiendaPc.app.Dto.dtoProductos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/productos")
 public class ProductosController {
-
+    @Autowired
     private ProductosServices productosServices;
+    @Autowired
+    private CategoriasService categoriasService;
 
 
-    public ProductosController(ProductosServices productosServices) {
-        this.productosServices = productosServices;
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<dtoProductos>> getAllProductos(){
@@ -29,7 +29,8 @@ public class ProductosController {
         List<dtoProductos> dtoProductos = new ArrayList<>();
 
         for (int i = 0; i < productos.size(); i++) {
-            dtoProductos.add(new dtoProductos());
+            dtoProductos x = new dtoProductos();
+            dtoProductos.add(x);
             dtoProductos.get(i).setCategoriasid(productos.get(i).getCategoriasid().getId());
             dtoProductos.get(i).setId(productos.get(i).getId());
             dtoProductos.get(i).setDescripcion(productos.get(i).getDescripcion());
@@ -43,17 +44,16 @@ public class ProductosController {
     @PostMapping("/add")
     public ResponseEntity<Productos> addProductos(@RequestBody dtoProductos productos){
         Productos productos1 = new Productos();
-        for (int i = 0; i < productosServices.findAllProductos().size(); i++){
+
             Long id1 = productos.getCategoriasid();
-            if (productosServices.findAllProductos().get(i).getCategoriasid().getId().equals(id1)){
-                productos1.setCategoriasid(productosServices.findAllProductos().get(i).getCategoriasid());
-            }
+
+            productos1.setCategoriasid(categoriasService.findCategoriasById(productos.getCategoriasid()));
             productos1.setPrecio(productos.getPrecio());
             productos1.setDescripcion(productos.getDescripcion());
             productos1.setId(productos.getId());
             productos1.setRebaja(productos.getRebaja());
             productos1.setNombre(productos.getNombre());
-        }
+
         Productos newProducto = productosServices.addProducto(productos1);
         return new ResponseEntity<>(newProducto, HttpStatus.CREATED);
     }

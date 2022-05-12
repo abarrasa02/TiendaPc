@@ -2,7 +2,10 @@ package com.example.TiendaPc.Controller;
 
 import com.example.TiendaPc.Provider.CompraServices;
 import com.example.TiendaPc.Entity.Compra;
+import com.example.TiendaPc.Provider.ProductosServices;
+import com.example.TiendaPc.Provider.UsuariosServices;
 import com.example.TiendaPc.app.Dto.dtoCompra;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +18,13 @@ import java.util.List;
 
 public class CompraController {
 
+    @Autowired
     private CompraServices compraServices;
+    @Autowired
+    private ProductosServices productosServices;
+    @Autowired
+    private UsuariosServices usuariosServices;
 
-    public CompraController(CompraServices compraServices) {
-        this.compraServices = compraServices;
-    }
 
 
     @GetMapping("/all")
@@ -42,18 +47,11 @@ public class CompraController {
     @PostMapping("/add")
     public ResponseEntity<Compra> addCompra(@RequestBody dtoCompra compra){
         Compra compra1 = new Compra();
-       for (int i = 0; i < compraServices.findAllCompra().size(); i++){
-           Long id1 = compra.getProductoId();
-           Long id2 = compra.getUsuarioId();
-           if (compraServices.findAllCompra().get(i).getProductoId().getId().equals(id1)){
-               compra1.setProductoId(compraServices.findAllCompra().get(i).getProductoId());
-           }else if (compraServices.findAllCompra().get(i).getUsuariosid().getId().equals(id1)){
-               compra1.setUsuariosid(compraServices.findAllCompra().get(i).getUsuariosid());
-           }
+           compra1.setProductoId(productosServices.findProductoById(compra.getProductoId()));
+           compra1.setUsuariosid(usuariosServices.findUsuarioById(compra.getUsuarioId()));
            compra1.setCantidad(compra.getCantidad());
            compra1.setFecha(compra.getFecha());
            compra1.setId(compra.getId());
-       }
         Compra newCompra = compraServices.addCompra(compra1);
         return new ResponseEntity<>(newCompra, HttpStatus.CREATED);
     }

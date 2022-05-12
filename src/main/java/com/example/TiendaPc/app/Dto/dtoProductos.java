@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 public class dtoProductos {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String descripcion;

@@ -25,6 +25,12 @@ public class CategoriasController {
         return new ResponseEntity<>(categoriass, HttpStatus.OK);
     }
 
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Categorias> getCategoriasById(@PathVariable("id") Long id){
+        Categorias categoria = categoriasServices.findCategoriasById(id);
+        return new ResponseEntity<>(categoria, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Categorias> addCategorias(@RequestBody Categorias categorias){
         Categorias newCategorias = categoriasServices.addCategorias(categorias);
