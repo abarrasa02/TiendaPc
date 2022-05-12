@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class Productos {
     @Id
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;

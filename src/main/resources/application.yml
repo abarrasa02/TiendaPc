@@ -3,9 +3,9 @@ spring:
     parser:
       allow-backslash-escaping-any-character: true
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:orcls
-    username: abarrasa
-    password: hiberus1000
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: adi
+    password: 123
     driverClassName: oracle.jdbc.driver.OracleDriver
 
   mail:

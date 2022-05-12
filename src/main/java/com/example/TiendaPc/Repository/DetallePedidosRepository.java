@@ -1,14 +1,14 @@
 package com.example.TiendaPc.Repository;
 
-import com.example.TiendaPc.Entity.Pedido;
+import com.example.TiendaPc.Entity.DetallePedidos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+public interface DetallePedidosRepository extends JpaRepository<DetallePedidos, Long> {
     void deletePedidosById(Long id);
 
-    Optional<Pedido> findPedidoById(Long id);
+    Optional<DetallePedidos> findPedidoById(Long id);
 }

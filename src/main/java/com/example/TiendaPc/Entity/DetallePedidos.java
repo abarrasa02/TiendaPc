@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Pedido {
+public class DetallePedidos {
 
     @Id
     @Column(name = "id")
@@ -18,7 +18,11 @@ public class Pedido {
     private Long id;
 
     @OneToOne
-    private Usuarios usuariosId;
-    private String fecha;
+    private Pedidos pedidoId;
+    @ManyToOne
+    @JoinColumn(name = "productosid")
+    private Productos productosId;
+    private int cantidad;
+    private double precioUnidad;
 
 }

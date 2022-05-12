@@ -5,8 +5,10 @@ import com.example.TiendaPc.Entity.Categorias;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class CategoriasService {
 
@@ -26,14 +28,11 @@ public class CategoriasService {
         List<Categorias> categorias = categoriasRepository.findAll();
         return categorias;
     }
-    public Categorias findCategoriasById(Long id){
-        return categoriasRepository.findCategoriasById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
-    }
     public void deleteCategorias(Long id){
         categoriasRepository.deleteCategoriasById(id);
     }
     public Categorias updateCategorias(Categorias categorias){
-        if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent() == true){
+        if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent()){
             return categoriasRepository.save(categorias);
         }else{
             throw new IllegalArgumentException("El libro no existe");
