@@ -46,7 +46,7 @@ public class ProductosController {
 
             Long id1 = productos.getCategoriasid();
 
-            productos1.setCategoriasid(categoriasService.findCategoriasById(productos.getCategoriasid()));
+            productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
             productos1.setPrecio(productos.getPrecio());
             productos1.setDescripcion(productos.getDescripcion());
             productos1.setId(productos.getId());
