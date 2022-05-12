@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @AllArgsConstructor
@@ -19,8 +20,10 @@ public class Pedidos {
 
     @ManyToOne
     @JoinColumn(name = "usuariosid")
+    @NotNull
     private Usuarios usuariosid;
 
+    @NotNull
     private String fecha;
 
 }

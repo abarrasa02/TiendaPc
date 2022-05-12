@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/compra")
+@RequestMapping("/pedidos")
 
 public class PedidosController {
 
@@ -54,8 +54,15 @@ public class PedidosController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Pedidos> updateCompra(@RequestBody Pedidos Compra){
-        Pedidos updateCompra = pedidosServices.updateCompra(Compra);
+    public ResponseEntity<Pedidos> updateCompra(@RequestBody dtoPedidos compra){
+        Pedidos compra1 = new Pedidos();
+        Pedidos updateCompra = new Pedidos();
+        if (pedidosServices.findCompraById(compra.getId()) != null) {
+            compra1.setId(compra.getId());
+            compra1.setUsuariosid(usuariosServices.findUsuarioById(compra.getUsuarioId()));
+            compra1.setFecha(compra.getFecha());
+            updateCompra = pedidosServices.updateCompra(compra1);
+        }
         return new ResponseEntity<>(updateCompra, HttpStatus.OK);
     }
 
