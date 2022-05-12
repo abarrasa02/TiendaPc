@@ -22,6 +22,8 @@ public class CategoriasController {
     @GetMapping("/all")
     public ResponseEntity<List<Categorias>> getAllCategoriass(){
         List<Categorias> categoriass = categoriasServices.findAllCategorias();
+
+
         return new ResponseEntity<>(categoriass, HttpStatus.OK);
     }
 

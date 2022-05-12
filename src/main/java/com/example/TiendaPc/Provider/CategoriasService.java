@@ -36,6 +36,7 @@ public class CategoriasService {
     public void deleteCategorias(Long id){
         categoriasRepository.deleteCategoriasById(id);
     }
+
     public Categorias updateCategorias(Categorias categorias){
         if (categoriasRepository.findCategoriasById(categorias.getId()).isPresent()){
             return categoriasRepository.save(categorias);
