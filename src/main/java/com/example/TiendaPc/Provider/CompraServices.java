@@ -1,7 +1,7 @@
 package com.example.TiendaPc.Provider;
 
 import com.example.TiendaPc.Repository.CompraRepository;
-import com.example.TiendaPc.Entity.Compra;
+import com.example.TiendaPc.Entity.Pedidos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +19,21 @@ public class CompraServices {
         this.compraRepository = compraRepository;
     }
 
-    public Compra addCompra(Compra compra) {
+    public Pedidos addCompra(Pedidos compra) {
         return compraRepository.save(compra);
     }
 
-    public List<Compra> findAllCompra() {
-        List<Compra> compra = compraRepository.findAll();
+    public List<Pedidos> findAllCompra() {
+        List<Pedidos> compra = compraRepository.findAll();
         return compra;
     }
-    public Compra findCompraById(Long id){
+    public Pedidos findCompraById(Long id){
         return compraRepository.findCompraById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
     public void deleteCompra(Long id){
         compraRepository.deleteComprasById(id);
     }
-    public Compra updateCompra(Compra compra){
+    public Pedidos updateCompra(Pedidos compra){
         if (compraRepository.findCompraById(compra.getId()).isPresent() == true){
             return compraRepository.save(compra);
         }else{

@@ -1,6 +1,5 @@
 package com.example.TiendaPc.Controller;
 
-import com.example.TiendaPc.Entity.Compra;
 import com.example.TiendaPc.Entity.Productos;
 import com.example.TiendaPc.Provider.CategoriasService;
 import com.example.TiendaPc.Provider.ProductosServices;
@@ -36,7 +35,7 @@ public class ProductosController {
             dtoProductos.get(i).setDescripcion(productos.get(i).getDescripcion());
             dtoProductos.get(i).setNombre(productos.get(i).getNombre());
             dtoProductos.get(i).setPrecio(productos.get(i).getPrecio());
-            dtoProductos.get(i).setRebaja(productos.get(i).getRebaja());
+             dtoProductos.get(i).setRebaja(productos.get(i).getRebaja());
         }
 
         return new ResponseEntity<>(dtoProductos, HttpStatus.OK);

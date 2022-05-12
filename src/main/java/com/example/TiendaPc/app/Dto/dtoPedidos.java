@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class dtoCompra {
+public class dtoPedidos {
     private Long id;
-    private int cantidad;
     private Long usuarioId;
-    private Long productoId;
     private String fecha;
 
 }

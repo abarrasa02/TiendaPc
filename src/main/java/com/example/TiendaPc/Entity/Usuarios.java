@@ -28,6 +28,12 @@ public class Usuarios implements Serializable {
 
     private String email;
 
+    private String ciudad;
+
+    private String Pais;
+
+    private String lineadireccion1;
+
 
 
 
