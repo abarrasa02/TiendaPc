@@ -43,9 +43,6 @@ public class ProductosController {
     @PostMapping("/add")
     public ResponseEntity<Productos> addProductos(@RequestBody dtoProductos productos){
         Productos productos1 = new Productos();
-
-            Long id1 = productos.getCategoriasid();
-
             productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
             productos1.setPrecio(productos.getPrecio());
             productos1.setDescripcion(productos.getDescripcion());
@@ -57,8 +54,17 @@ public class ProductosController {
         return new ResponseEntity<>(newProducto, HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<Productos> updateProductos(@RequestBody Productos productos){
-        Productos updateProducto = productosServices.updateProducto(productos);
+    public ResponseEntity<Productos> updateProductos(@RequestBody dtoProductos productos){
+        Productos productos1 = new Productos();
+        if (productosServices.findProductoById(productos.getId()) != null) {
+            productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
+            productos1.setPrecio(productos.getPrecio());
+            productos1.setDescripcion(productos.getDescripcion());
+            productos1.setId(productos.getId());
+            productos1.setRebaja(productos.getRebaja());
+            productos1.setNombre(productos.getNombre());
+        }
+        Productos updateProducto = productosServices.updateProducto(productos1);
         return new ResponseEntity<>(updateProducto, HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")

@@ -56,8 +56,16 @@ public class DetallePedidosController {
         return new ResponseEntity<>(newPedido, HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<DetallePedidos> updatePedido(@RequestBody DetallePedidos pedido){
-        DetallePedidos updatePedido = detallePedidosServices.updatePedido(pedido);
+    public ResponseEntity<DetallePedidos> updatePedido(@RequestBody dtoDetallePedidos pedidos){
+        DetallePedidos detallePedidos = new DetallePedidos();
+        if (detallePedidosServices.findDetallePedidosById(pedidos.getId()) != null) {
+            detallePedidos.setPedidoId(pedidosServices.findCompraById(pedidos.getPedidoId()));
+            detallePedidos.setProductosId(productosServices.findProductoById(pedidos.getProductosId()));
+            detallePedidos.setId(pedidos.getId());
+            detallePedidos.setCantidad(pedidos.getCantidad());
+            detallePedidos.setPrecioUnidad(pedidos.getPrecioUnidad());
+        }
+        DetallePedidos updatePedido = detallePedidosServices.updatePedido(detallePedidos);
         return new ResponseEntity<>(updatePedido, HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")

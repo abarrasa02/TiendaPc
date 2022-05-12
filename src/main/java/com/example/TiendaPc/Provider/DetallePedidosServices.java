@@ -26,6 +26,10 @@ public class DetallePedidosServices {
         List<DetallePedidos> pedido = detallePedidosRepository.findAll();
         return pedido;
     }
+    public DetallePedidos findDetallePedidosById(Long id){
+        DetallePedidos detallePedidos = detallePedidosRepository.findPedidoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
+        return detallePedidos;
+    }
     public void deletePedido(Long id){
         detallePedidosRepository.deletePedidosById(id);
     }
