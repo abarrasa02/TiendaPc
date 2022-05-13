@@ -25,16 +25,25 @@ public class UsuariosController {
         List<Usuarios> usuarios = usuariosServices.findAllUsuarios();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuarios> getCategoriasById(@PathVariable("id") Long id){
+        Usuarios categoria = usuariosServices.findUsuarioById(id);
+        return new ResponseEntity<>(categoria, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios){
         Usuarios newUsuarios = usuariosServices.addUsuarios(usuarios);
         return new ResponseEntity<>(newUsuarios, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     public ResponseEntity<Usuarios> updateUsuarios(@RequestBody Usuarios usuarios){
         Usuarios updateUsuarios = usuariosServices.updateUsuario(usuarios);
         return new ResponseEntity<>(updateUsuarios, HttpStatus.OK);
     }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Usuarios> deleteCategorias(@PathVariable("id") Long id){
         usuariosServices.deleteUsuario(id);

@@ -15,58 +15,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/productos")
 public class ProductosController {
+
     @Autowired
     private ProductosServices productosServices;
+
     @Autowired
     private CategoriasService categoriasService;
 
 
-
     @GetMapping("/all")
     public ResponseEntity<List<dtoProductos>> getAllProductos(){
-        List<Productos> productos = productosServices.findAllProductos();
-        List<dtoProductos> dtoProductos = new ArrayList<>();
-
-        for (int i = 0; i < productos.size(); i++) {
-            dtoProductos x = new dtoProductos();
-            dtoProductos.add(x);
-            dtoProductos.get(i).setCategoriasid(productos.get(i).getCategoriasid().getId());
-            dtoProductos.get(i).setId(productos.get(i).getId());
-            dtoProductos.get(i).setDescripcion(productos.get(i).getDescripcion());
-            dtoProductos.get(i).setNombre(productos.get(i).getNombre());
-            dtoProductos.get(i).setPrecio(productos.get(i).getPrecio());
-             dtoProductos.get(i).setRebaja(productos.get(i).getRebaja());
-        }
-
+        List<dtoProductos> dtoProductos = productosServices.findAllProductos();
         return new ResponseEntity<>(dtoProductos, HttpStatus.OK);
     }
+
     @PostMapping("/add")
     public ResponseEntity<Productos> addProductos(@RequestBody dtoProductos productos){
-        Productos productos1 = new Productos();
-            productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
-            productos1.setPrecio(productos.getPrecio());
-            productos1.setDescripcion(productos.getDescripcion());
-            productos1.setId(productos.getId());
-            productos1.setRebaja(productos.getRebaja());
-            productos1.setNombre(productos.getNombre());
-
-        Productos newProducto = productosServices.addProducto(productos1);
+        Productos newProducto = productosServices.addProducto(productos);
         return new ResponseEntity<>(newProducto, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     public ResponseEntity<Productos> updateProductos(@RequestBody dtoProductos productos){
-        Productos productos1 = new Productos();
-        if (productosServices.findProductoById(productos.getId()) != null) {
-            productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
-            productos1.setPrecio(productos.getPrecio());
-            productos1.setDescripcion(productos.getDescripcion());
-            productos1.setId(productos.getId());
-            productos1.setRebaja(productos.getRebaja());
-            productos1.setNombre(productos.getNombre());
-        }
-        Productos updateProducto = productosServices.updateProducto(productos1);
+        Productos updateProducto = productosServices.updateProducto(productos);
         return new ResponseEntity<>(updateProducto, HttpStatus.OK);
     }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Productos> deleteProductos(@PathVariable("id") Long id){
         productosServices.deleteProducto(id);

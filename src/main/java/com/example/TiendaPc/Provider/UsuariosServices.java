@@ -14,6 +14,7 @@ public class UsuariosServices {
 
 
     private UsuariosRepository usuariosrepo;
+
     @Autowired
     public UsuariosServices(UsuariosRepository usuariosrepo) {
         this.usuariosrepo = usuariosrepo;
@@ -28,8 +29,10 @@ public class UsuariosServices {
         List<Usuarios> usuarios = usuariosrepo.findAll();
         return usuarios;
     }
+
     public Usuarios findUsuarioById(Long id){
-        return usuariosrepo.findUsuarioById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
+        Usuarios usuarios = usuariosrepo.findUsuarioById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
+        return usuarios;
     }
 
     public void deleteUsuario(Long id){
