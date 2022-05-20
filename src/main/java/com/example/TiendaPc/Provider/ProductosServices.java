@@ -26,10 +26,9 @@ public class ProductosServices {
 
     public Productos addProducto(dtoProductos productos) {
         Productos productos1 = new Productos();
-        productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
+        productos1.setCategoriasId(categoriasService.findCategoriaById(productos.getCategoriasId()));
         productos1.setPrecio(productos.getPrecio());
         productos1.setDescripcion(productos.getDescripcion());
-        productos1.setId(productos.getId());
         productos1.setRebaja(productos.getRebaja());
         productos1.setNombre(productos.getNombre());
         return productosrepo.save(productos1);
@@ -42,7 +41,7 @@ public class ProductosServices {
         for (int i = 0; i < productos.size(); i++) {
             dtoProductos x = new dtoProductos();
             dtoProductos.add(x);
-            dtoProductos.get(i).setCategoriasid(productos.get(i).getCategoriasid().getId());
+            dtoProductos.get(i).setCategoriasId(productos.get(i).getCategoriasId().getId());
             dtoProductos.get(i).setId(productos.get(i).getId());
             dtoProductos.get(i).setDescripcion(productos.get(i).getDescripcion());
             dtoProductos.get(i).setNombre(productos.get(i).getNombre());
@@ -60,7 +59,7 @@ public class ProductosServices {
     public Productos updateProducto( dtoProductos productos){
         Productos productos1 = productosrepo.findProductoById(productos.getId()).orElseThrow(null);
         if (productos1 != null) {
-            productos1.setCategoriasid(categoriasService.findCategoriaById(productos.getCategoriasid()));
+            productos1.setCategoriasId(categoriasService.findCategoriaById(productos.getCategoriasId()));
             productos1.setPrecio(productos.getPrecio());
             productos1.setDescripcion(productos.getDescripcion());
             productos1.setId(productos.getId());

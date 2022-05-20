@@ -18,7 +18,7 @@ public class dtoProductos {
     private String descripcion;
     private double precio;
     private int rebaja;
-    private Long categoriasid;
+    private Long categoriasId;
 
 
 }

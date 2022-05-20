@@ -22,12 +22,6 @@ public class DetallePedidosController {
     @Autowired
     private DetallePedidosServices detallePedidosServices;
 
-    @Autowired
-    private PedidosServices pedidosServices;
-
-    @Autowired
-    private ProductosServices productosServices;
-
 
     @GetMapping("/all")
     public ResponseEntity<List<dtoDetallePedidos>> getAllPedidos(){
