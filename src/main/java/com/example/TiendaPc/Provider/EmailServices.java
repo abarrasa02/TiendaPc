@@ -33,10 +33,11 @@ public class EmailServices {
             helper.setText(email.getMensaje());
 
 
-        if(file!=null) {
-            byte[] fichBytes = file.getBytes();
-            helper.addAttachment("Adjunto.pdf", new ByteArrayResource(fichBytes));
-        }
+
+    byte[] fichBytes = file.getBytes();
+    helper.addAttachment("Adjunto.pdf", new ByteArrayResource(fichBytes));
+
+
             mailSender.send(mimeMessage);
 
             System.out.println("Email sending complete.");

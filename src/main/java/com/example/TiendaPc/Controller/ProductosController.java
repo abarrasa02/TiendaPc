@@ -4,13 +4,19 @@ import com.example.TiendaPc.Entity.Productos;
 import com.example.TiendaPc.Provider.CategoriasService;
 import com.example.TiendaPc.Provider.ProductosServices;
 import com.example.TiendaPc.app.Dto.dtoProductos;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.script.ScriptEngine.FILENAME;
 
 @RestController
 @RequestMapping("/productos")
@@ -44,6 +50,18 @@ public class ProductosController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Productos> deleteProductos(@PathVariable("id") Long id){
         productosServices.deleteProducto(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    private static final String FILENAME = "productos.xls";
+    @GetMapping(value="/export", produces= MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<?> descargaExcel(HttpServletResponse response) throws Exception {
+        List<dtoProductos> list = productosServices.findAllProductos();
+
+        ByteArrayInputStream in = productosServices.exportAlldata(list);
+        IOUtils.copy(in, response.getOutputStream());
+        response.setContentType("application/x-download");
+        response.setHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(FILENAME, "UTF-8"));
+        response.flushBuffer();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

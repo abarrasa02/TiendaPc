@@ -3,10 +3,14 @@ package com.example.TiendaPc.Provider;
 import com.example.TiendaPc.Entity.Productos;
 import com.example.TiendaPc.Repository.ProductosRepository;
 import com.example.TiendaPc.app.Dto.dtoProductos;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +71,37 @@ public class ProductosServices {
             productos1.setNombre(productos.getNombre());
         }
         return productosrepo.save(productos1);
+    }
+    public ByteArrayInputStream exportAlldata(List<dtoProductos>productos) throws Exception {
+        String[] columns ={"Nombre","Descripcion","Precio","Rebaja"};
+        Workbook workbook=new HSSFWorkbook();
+
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        Sheet sheet=workbook.createSheet("Productos");
+        Row row=sheet.createRow(0);
+        CellStyle headercellstyle = workbook.createCellStyle();
+        headercellstyle.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
+        headercellstyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+
+        for (int i=0;i<columns.length;i++){
+            Cell cell =row.createCell(i);
+            cell.setCellValue(columns[i]);
+        }
+
+        int initRow=1;
+        for (dtoProductos    productos1: productos){
+            row=sheet.createRow(initRow);
+            row.createCell(0).setCellValue(productos1.getNombre());
+            row.createCell(1).setCellValue(productos1.getDescripcion());
+            row.createCell(2).setCellValue(productos1.getPrecio());
+            row.createCell(3).setCellValue(productos1.getRebaja());
+            initRow++;
+        }
+
+        workbook.write(stream);
+
+
+        return new ByteArrayInputStream(stream.toByteArray());
     }
 }
