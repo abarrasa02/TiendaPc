@@ -5,27 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "DETALLEPEDIDOS")
-public class DetallePedidos {
+public class PedidosEntity {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "pedidoid")
-    private Pedidos pedidoId;
     @ManyToOne
-    @JoinColumn(name = "productoid")
-    private Productos productosId;
-    private int cantidad;
-    @Column(name = "preciounidad")
-    private double precioUnidad;
+    @JoinColumn(name = "usuariosid")
+    @NotNull
+    private UsuariosEntity usuariosid;
+
+    @NotNull
+    private String fecha;
 
 }

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 
-public class Productos {
+public class ProductosEntity {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,7 @@ public class Productos {
 
     @ManyToOne
     @JoinColumn(name = "categoriasid")
-    private Categorias categoriasId;
+    private CategoriasEntity categoriasEntityId;
+
 
 }

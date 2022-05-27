@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Usuarios implements Serializable {
+public class UsuariosEntity implements Serializable {
 
 
     @Id

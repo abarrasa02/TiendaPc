@@ -1,12 +1,11 @@
 package com.example.TiendaPc.Entity;
 import lombok.*;
-import java.io.File;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Email {
+public class EmailEntity {
 
     @Getter
     @Setter

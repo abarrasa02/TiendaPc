@@ -1,6 +1,6 @@
 package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.Entity.Email;
+import com.example.TiendaPc.Entity.EmailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -13,25 +13,24 @@ import javax.mail.internet.*;
 
 
 @Service
-public class EmailServices {
+public class EmailProvider {
 
     @Autowired
     private JavaMailSenderImpl  mailSender;
 
-    public EmailServices() {
+    public EmailProvider() {
 
 
     }
 
-    public void sendMail(Email email, MultipartFile file) throws MessagingException {
+    public void sendMail(EmailEntity emailEntity, MultipartFile file) throws MessagingException {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
             helper.setFrom("daw09.2022@gmail.com");
-            helper.setTo(email.getEmail());
-            helper.setSubject(email.getAsunto());
-            helper.setText(email.getMensaje());
-
+            helper.setTo(emailEntity.getEmail());
+            helper.setSubject(emailEntity.getAsunto());
+            helper.setText(emailEntity.getMensaje());
 
 
     byte[] fichBytes = file.getBytes();

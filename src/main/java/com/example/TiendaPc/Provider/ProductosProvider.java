@@ -1,6 +1,6 @@
 package com.example.TiendaPc.Provider;
 
-import com.example.TiendaPc.Entity.Productos;
+import com.example.TiendaPc.Entity.ProductosEntity;
 import com.example.TiendaPc.Repository.ProductosRepository;
 import com.example.TiendaPc.app.Dto.dtoProductos;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,61 +16,71 @@ import java.util.List;
 
 @Transactional
 @Service
-public class ProductosServices {
+public class ProductosProvider {
 
     @Autowired
-    private CategoriasService categoriasService;
+    private CategoriasProvider categoriasProvider;
 
     private ProductosRepository productosrepo;
 
     @Autowired
-    public ProductosServices(ProductosRepository productosrepo) {
+    public ProductosProvider(ProductosRepository productosrepo) {
         this.productosrepo = productosrepo;
     }
 
-    public Productos addProducto(dtoProductos productos) {
-        Productos productos1 = new Productos();
-        productos1.setCategoriasId(categoriasService.findCategoriaById(productos.getCategoriasId()));
-        productos1.setPrecio(productos.getPrecio());
-        productos1.setDescripcion(productos.getDescripcion());
-        productos1.setRebaja(productos.getRebaja());
-        productos1.setNombre(productos.getNombre());
-        return productosrepo.save(productos1);
+    public ProductosEntity addProducto(dtoProductos productos) {
+        ProductosEntity productosEntity1 = new ProductosEntity();
+        productosEntity1.setCategoriasEntityId(categoriasProvider.findCategoriaById(productos.getCategoriasId()));
+        productosEntity1.setPrecio(productos.getPrecio());
+        productosEntity1.setDescripcion(productos.getDescripcion());
+        productosEntity1.setRebaja(productos.getRebaja());
+        productosEntity1.setNombre(productos.getNombre());
+
+
+        return productosrepo.save(productosEntity1);
     }
 
     public List<dtoProductos> findAllProductos() {
-        List<Productos> productos = productosrepo.findAll();
+        List<ProductosEntity> productos = productosrepo.findAll();
         List<dtoProductos> dtoProductos = new ArrayList<>();
 
         for (int i = 0; i < productos.size(); i++) {
             dtoProductos x = new dtoProductos();
+
+
+            x.setCategoriasId(productos.get(i).getCategoriasEntityId().getId());
+            x.setId(productos.get(i).getId());
+            x.setDescripcion(productos.get(i).getDescripcion());
+            x.setNombre(productos.get(i).getNombre());
+            x.setPrecio(productos.get(i).getPrecio());
+            x.setRebaja(productos.get(i).getRebaja());
             dtoProductos.add(x);
-            dtoProductos.get(i).setCategoriasId(productos.get(i).getCategoriasId().getId());
-            dtoProductos.get(i).setId(productos.get(i).getId());
-            dtoProductos.get(i).setDescripcion(productos.get(i).getDescripcion());
-            dtoProductos.get(i).setNombre(productos.get(i).getNombre());
-            dtoProductos.get(i).setPrecio(productos.get(i).getPrecio());
-            dtoProductos.get(i).setRebaja(productos.get(i).getRebaja());
         }
         return dtoProductos;
     }
-    public Productos findProductoById(Long id){
+    public ProductosEntity findProductoById(Long id){
         return productosrepo.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public void deleteProducto(Long id){
-        productosrepo.deleteProductosById(id);
-    }
-    public Productos updateProducto( dtoProductos productos){
-        Productos productos1 = productosrepo.findProductoById(productos.getId()).orElseThrow(null);
-        if (productos1 != null) {
-            productos1.setCategoriasId(categoriasService.findCategoriaById(productos.getCategoriasId()));
-            productos1.setPrecio(productos.getPrecio());
-            productos1.setDescripcion(productos.getDescripcion());
-            productos1.setId(productos.getId());
-            productos1.setRebaja(productos.getRebaja());
-            productos1.setNombre(productos.getNombre());
+    public String deleteProducto(Long id){
+        try {
+            productosrepo.deleteProductosById(id);
+            return "Borraste su existencia, ¿vas a dormir bien?";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "No funca el delete, arreglalo perro";
         }
-        return productosrepo.save(productos1);
+    }
+    public ProductosEntity updateProducto(dtoProductos productos){
+        ProductosEntity productosEntity1 = productosrepo.findProductoById(productos.getId()).orElseThrow(null);
+        if (productosEntity1 != null) {
+            productosEntity1.setCategoriasEntityId(categoriasProvider.findCategoriaById(productos.getCategoriasId()));
+            productosEntity1.setPrecio(productos.getPrecio());
+            productosEntity1.setDescripcion(productos.getDescripcion());
+            productosEntity1.setId(productos.getId());
+            productosEntity1.setRebaja(productos.getRebaja());
+            productosEntity1.setNombre(productos.getNombre());
+        }
+        return productosrepo.save(productosEntity1);
     }
     public ByteArrayInputStream exportAlldata(List<dtoProductos>productos) throws Exception {
         String[] columns ={"Nombre","Descripcion","Precio","Rebaja"};

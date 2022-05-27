@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 
 
-public class Categorias  implements Serializable {
+public class CategoriasEntity implements Serializable {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)

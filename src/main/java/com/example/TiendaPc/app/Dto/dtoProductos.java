@@ -1,7 +1,5 @@
 package com.example.TiendaPc.app.Dto;
 
-import com.example.TiendaPc.Entity.Categorias;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +17,4 @@ public class dtoProductos {
     private double precio;
     private int rebaja;
     private Long categoriasId;
-
-
 }
