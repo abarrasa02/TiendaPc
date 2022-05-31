@@ -50,6 +50,7 @@ public class ProductosController {
         productosProvider.deleteProducto(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     private static final String FILENAME = "productos.xls";
     @GetMapping(value="/export", produces= MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> descargaExcel(HttpServletResponse response) throws Exception {

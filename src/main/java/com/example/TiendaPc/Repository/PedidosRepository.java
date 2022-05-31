@@ -1,6 +1,7 @@
 package com.example.TiendaPc.Repository;
 
 import com.example.TiendaPc.Entity.PedidosEntity;
+import com.example.TiendaPc.Entity.ProductosID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

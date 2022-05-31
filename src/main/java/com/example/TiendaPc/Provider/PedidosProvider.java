@@ -1,7 +1,9 @@
 package com.example.TiendaPc.Provider;
 
+import com.example.TiendaPc.Entity.ProductosID;
 import com.example.TiendaPc.Repository.PedidosRepository;
 import com.example.TiendaPc.Entity.PedidosEntity;
+import com.example.TiendaPc.Repository.ProductosRepository;
 import com.example.TiendaPc.Repository.UsuariosRepository;
 import com.example.TiendaPc.app.Dto.dtoPedidos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +21,27 @@ public class PedidosProvider {
 
     private PedidosRepository pedidosRepository;
 
+    private ProductosRepository productosRepository;
+
     @Autowired
     private UsuariosProvider usuariosProvider;
 
     @Autowired
-    public PedidosProvider(PedidosRepository pedidosRepository, UsuariosRepository usuariosRepository) {
+    public PedidosProvider(PedidosRepository pedidosRepository, UsuariosRepository usuariosRepository, ProductosRepository productosRepository) {
         this.pedidosRepository = pedidosRepository;
         this.usuariosRepository = usuariosRepository;
+        this.productosRepository = productosRepository;
     }
 
     public PedidosEntity addCompra(dtoPedidos compra) {
         PedidosEntity pedidosEntity = new PedidosEntity();
+        String fecha = compra.getFecha();
+        fecha = fecha.substring(8,10) + "-" + fecha.substring(5,7) + "-" + fecha.substring(0,4);
+        pedidosEntity.setId(compra.getId());
         pedidosEntity.setUsuariosid(usuariosRepository.findUsuarioById(compra.getUsuarioId()).orElseThrow(null));
-        pedidosEntity.setFecha(compra.getFecha());
+        pedidosEntity.setFecha(fecha);
+        pedidosEntity.setCantidad(compra.getCantidad());
+        pedidosEntity.setProductos(productosRepository.findProductoById(compra.getProductoId()).orElseThrow(null));
         return pedidosRepository.save(pedidosEntity);
     }
 
@@ -53,14 +63,8 @@ public class PedidosProvider {
     public PedidosEntity findCompraById(Long id){
         return pedidosRepository.findCompraById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public String deleteCompra(Long id){
-        try {
+    public void deleteCompra(Long id){
             pedidosRepository.deleteComprasById(id);
-            return "Se borro";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "Delete no funca";
-        }
         }
     public PedidosEntity updateCompra(dtoPedidos compra){
         PedidosEntity compra1 = findCompraById(compra.getId());

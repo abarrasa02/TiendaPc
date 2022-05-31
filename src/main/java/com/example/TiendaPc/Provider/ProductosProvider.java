@@ -44,6 +44,12 @@ public class ProductosProvider {
         List<ProductosEntity> productos = productosrepo.findAll();
         List<dtoProductos> dtoProductos = new ArrayList<>();
 
+        for(ProductosEntity prod: productos) {
+            dtoProductos x = new dtoProductos();
+
+            x.setPrecio(prod.getPrecio());
+        }
+
         for (int i = 0; i < productos.size(); i++) {
             dtoProductos x = new dtoProductos();
 
@@ -61,14 +67,8 @@ public class ProductosProvider {
     public ProductosEntity findProductoById(Long id){
         return productosrepo.findProductoById(id).orElseThrow(() -> new IllegalArgumentException("No funca"));
     }
-    public String deleteProducto(Long id){
-        try {
-            productosrepo.deleteProductosById(id);
-            return "Borraste su existencia, ¿vas a dormir bien?";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "No funca el delete, arreglalo perro";
-        }
+    public void deleteProducto(Long id){
+      productosrepo.deleteProductosById(id);
     }
     public ProductosEntity updateProducto(dtoProductos productos){
         ProductosEntity productosEntity1 = productosrepo.findProductoById(productos.getId()).orElseThrow(null);

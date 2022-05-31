@@ -11,6 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table ( name = "Usuarios")
 public class UsuariosEntity implements Serializable {
 
 

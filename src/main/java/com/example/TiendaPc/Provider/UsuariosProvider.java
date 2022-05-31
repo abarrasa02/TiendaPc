@@ -35,14 +35,9 @@ public class UsuariosProvider {
         return usuariosEntity;
     }
 
-    public String deleteUsuario(Long id){
-        try {
+    public void deleteUsuario(Long id){
             usuariosrepo.deleteUsuariosById(id);
-            return "Se borró perro, se quedará en nuestra memoria";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "No se para que quieres borrar un usuario, pero esto no tira jefe";
-        }
+
     }
     public UsuariosEntity updateUsuario(UsuariosEntity usuariosEntity){
         if (usuariosrepo.findUsuarioById(usuariosEntity.getId()).isPresent()){

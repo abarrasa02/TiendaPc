@@ -1,5 +1,6 @@
 package com.example.TiendaPc.Controller;
 
+import com.example.TiendaPc.Entity.ProductosID;
 import com.example.TiendaPc.Provider.PedidosProvider;
 import com.example.TiendaPc.Entity.PedidosEntity;
 import com.example.TiendaPc.Provider.ProductosProvider;

@@ -33,14 +33,8 @@ public class CategoriasProvider {
         return categoriasRepository.findCategoriasById(id).orElseThrow(() -> new IllegalArgumentException("error"));
     }
 
-    public String deleteCategorias(Long id){
-        try {
+    public void deleteCategorias(Long id){
             categoriasRepository.deleteCategoriasById(id);
-            return "El producto se ha borrado";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "Delete no funca nano";
-        }
     }
 
     public CategoriasEntity updateCategorias(CategoriasEntity categoriasEntity){

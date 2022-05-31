@@ -1,9 +1,12 @@
 package com.example.TiendaPc.Entity;
 import lombok.*;
 
+import javax.persistence.Table;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
+
 
 public class EmailEntity {
 
